@@ -5,7 +5,7 @@ This is the starter code of [2023-Programming User Interface Homework](https://h
 # Report
 - 姓名：江宗翰
 - deploy 的網站連結：[https://main--incomparable-arithmetic-0b287e.netlify.app/](https://main--incomparable-arithmetic-0b287e.netlify.app/)
-- 實作的加分作業項目：無
+- 實作的加分作業項目：編輯購物車條目
 - 設計行為描述與理由：
     - 購物車內容及數量，以及相關會影響其內容的操作函式，都方在最上層的 `App` 中，再透過 `props` 的方式傳給如 `Deatils` 或 `Cart` 等頁面，因為這些狀態都是最上層在管理，所以整個網站可以在各處即時因 state 的變化而改變呈現的畫面。也就是這些主要的資料都由最上層的 `App` 所管理，因此對於多分頁的情況會獨立紀錄，互不影響。
     - 而因為重新整理會清除這些 state，所以重新整理後就會消失，因為此網站無後端，所以設計資料都是儲存在瀏覽器記憶體中，且並無使用到 localStorge 或是 Cookie (使用這些會讓使用者多分頁狀況下會是同樣的購物車資料，且重新整理或是關閉頁面後資料不會立即消失)。
