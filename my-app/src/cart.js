@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import SizeOptions from './component/sizeOptions'
 import {
-    getShirtName, getPrice, priceToNumber,
+    getShirtName, getPrice, priceToNumber, getAllColors,
     setSelectedImage, numberList, priceSign
 } from './shared/utils';
 import { useState } from "react";
@@ -18,9 +19,8 @@ function calculateTotal(myCart, shippingFee) {
     return parseFloat((calculateMyCart(myCart) + shippingFee).toPrecision(12));
 }
 
-export default function Cart({ num, myCart, removeCartItem, changeQty }) {
+export default function Cart({ num, myCart, removeCartItem, changeQty, editCartItem }) {
     const shippingFee = 3.75;
-    //key={idx + shirt.id + shirt.color + shirt.quantity + shirt.size}
     return (
         <>
             <h2 id="cart-name">My Cart ({num})</h2>
@@ -30,7 +30,8 @@ export default function Cart({ num, myCart, removeCartItem, changeQty }) {
                         myCart.length === 0 ? <p id="cart-empty">Your Cart is Empty</p> :
                             myCart.map((shirt, idx) => (
                                 <CartShirtItem key={shirt.cartId} shirt={shirt} idx={idx}
-                                    removeCartItem={removeCartItem} changeQty={changeQty} />
+                                    removeCartItem={removeCartItem} changeQty={changeQty}
+                                    editCartItem={editCartItem} />
                             ))
                     }
                 </div >
@@ -70,10 +71,11 @@ export default function Cart({ num, myCart, removeCartItem, changeQty }) {
     )
 };
 
-function CartShirtItem({ shirt, idx, removeCartItem, changeQty }) {
+function CartShirtItem({ shirt, idx, removeCartItem, changeQty, editCartItem }) {
     let [qty, setQty] = useState(shirt.quantity);
     //console.log(`list id:${idx}, now content id is ${shirt.id}, color is ${shirt.color}, quantity is ${shirt.quantity}, size is ${shirt.size}`);
     //console.log(`list id:${idx}, now qty is ${qty}`);
+    const colors = getAllColors(shirt.id);
     return (
         <div className="cart-item">
             <h3 >{getShirtName(shirt.id)}</h3>
@@ -88,7 +90,6 @@ function CartShirtItem({ shirt, idx, removeCartItem, changeQty }) {
                         <label htmlFor='quantity' >Quantity:</label>
                         <select value={qty} id="quantity" className='color-btn'
                             onChange={(e) => {
-                                //console.log('change to' + e.target.value);
                                 changeQty(idx, e.target.value);
                                 setQty(e.target.value);
                             }}>
@@ -101,9 +102,29 @@ function CartShirtItem({ shirt, idx, removeCartItem, changeQty }) {
                     </div>
                     <div className="detail-selector-container">Color:
                         <p className="cart-red-text">{`   ${shirt.color}`}</p>
+                        <div className="cart-edit">
+                            (Edit:
+                            <select id="size" defaultValue={shirt.color} className='color-btn'
+                                onChange={(e) => { editCartItem(idx, "color", e.target.value) }}>
+                                {
+                                    colors.map(color =>
+                                        <option key={color} value={color} >
+                                            {color}
+                                        </option>
+                                    )
+                                }
+                            </select>)
+                        </div>
                     </div>
                     <div className="detail-selector-container">Size:
                         <p className="cart-red-text">{`   ${shirt.size}`}</p>
+                        <div className="cart-edit">
+                            (Edit:
+                            <select id="size" defaultValue={shirt.size} className='color-btn'
+                                onChange={(e) => { editCartItem(idx, "size", e.target.value) }}>
+                                <SizeOptions />
+                            </select>)
+                        </div>
                     </div>
                     <div className="detail-selector-container">Price (each):
                         <p className="cart-red-text">{` ${getPrice(shirt.id)}`}</p>

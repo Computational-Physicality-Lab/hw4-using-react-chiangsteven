@@ -224,6 +224,10 @@ footer>div {
     margin-right: 2rem;
 }
 
+.cart-edit {
+    margin-left: 1rem;
+}
+
 .amountbox {
     display: flex;
     justify-content: space-between;
@@ -266,8 +270,9 @@ footer>div {
     border-radius: 5px;
     margin-left: 0.3rem;
     margin-right: 0.3rem;
-    padding: 10px 6px 10px 6px;
+    padding: 10px 0.25rem 10px 0.25rem;
     font-size: medium;
+    text-align: center;
 }
 
 .add-cart-btn,
@@ -282,6 +287,7 @@ footer>div {
     margin-right: 0.3rem;
     padding: 1px 6px 1px 6px;
     font-size: larger;
+    max-width: 115px;
 }
 
 .side-btn:hover,
@@ -332,7 +338,7 @@ footer>div {
 }
 
 .cart-list {
-    width: 60%;
+    width: 68%;
 }
 
 .cart-red-text {
@@ -363,7 +369,9 @@ footer>div {
     margin-left: 0.3rem;
     margin-right: 0.3rem;
     padding: 10px 6px 10px 6px;
-    text-align: center;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
 }
 
 .continue-div {

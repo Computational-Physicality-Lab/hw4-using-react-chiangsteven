@@ -1,16 +1,13 @@
-import logo from './assets/images/logo.png';
-import cart from './assets/images/cart.png';
 import './style.css';
-import Home from './home';
-import NotImp from './notImp';
 import Footer from './component/footer';
+import Header from './component/header';
 import Products from './products';
 import Details from './details';
 import Cart from './cart';
-import { Link, Routes, Route, HashRouter } from "react-router-dom";
+import Home from './home';
+import NotImp from './notImp';
 import { useState } from 'react';
-
-const headerNotImpText = ["CREATE FROM PICTURE", "CREATE YOUR OWN", "ABOUT US", "LOG IN"];
+import { Routes, Route, HashRouter } from 'react-router-dom';
 
 function App() {
   let [itemNum, setItemNum] = useState(0);
@@ -32,14 +29,19 @@ function App() {
   const changeCartItemQty = (id, qty) => {
     let originQty = myCart[id].quantity;
     setItemNum(parseInt(itemNum) - parseInt(originQty) + parseInt(qty));
-    let tmpCart = myCart;
+    let tmpCart = [...myCart];
     tmpCart[id].quantity = qty;
+    setMyCart(tmpCart);
+  };
+  const editCartItem = (id, field, newValue) => {
+    let tmpCart = [...myCart];
+    tmpCart[id][field] = newValue;
     setMyCart(tmpCart);
   };
 
   return (
     <HashRouter>
-      <header>
+      {/* <header>
         <div className="head-container">
           <Link className="logo" to="/"><img src={logo} alt="logo.png" /></Link>
           <h1 className="name">Scotty Shirts U Illustrate (SSUI)</h1>
@@ -53,14 +55,16 @@ function App() {
           {headerNotImpText.map((text, id) =>
             (<Link key={id} to="/not_implemented">{text}</Link>))}
         </div>
-      </header>
+      </header> */}
+      <Header itemNum={itemNum} />
       <Routes>
 
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/details/:productID" element={<Details addCart={addCart} />} />
         <Route path="/shoppingcart"
-          element={<Cart num={itemNum} myCart={myCart} removeCartItem={removeCartItem} changeQty={changeCartItemQty} />} />
+          element={<Cart num={itemNum} myCart={myCart}
+            removeCartItem={removeCartItem} changeQty={changeCartItemQty} editCartItem={editCartItem} />} />
         <Route path="/not_implemented" element={<NotImp />} />
 
       </Routes>

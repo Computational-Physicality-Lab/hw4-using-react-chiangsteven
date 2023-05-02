@@ -1,19 +1,11 @@
-import shirts from './shared/shirts';
 import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
+import SizeOptions from './component/sizeOptions'
 import {
     getShirtName, getPrice, noPriceString, numberList, getDescription,
-    getFirstAvailableColorAndNum, setSelectedImage
+    getFirstAvailableColorAndNum, setSelectedImage, getAllColors
 } from './shared/utils';
 import { useState } from 'react';
-
-function getAllColors(idx) {
-    let colors = [];
-    for (let color in shirts[idx].colors) {
-        colors.push(color);
-    }
-    return colors;
-}
 
 export default function Details({ addCart }) {
     let { productID } = useParams();
@@ -70,18 +62,7 @@ export default function Details({ addCart }) {
                         <select id="size" value={size} className='color-btn'
                             onChange={(e) => { setSize(e.target.value); }}>
                             <option value="">Size</option>
-                            <option value="Women's XS">Women's XS</option>
-                            <option value="Women's S">Women's S</option>
-                            <option value="Women's M">Women's M</option>
-                            <option value="Women's L">Women's L</option>
-                            <option value="Women's XL">Women's XL</option>
-                            <option value="Women's 2XL">Women's 2XL</option>
-                            <option value="Men's XS">Men's XS</option>
-                            <option value="Men's S">Men's S</option>
-                            <option value="Men's M">Men's M</option>
-                            <option value="Men's L">Men's L</option>
-                            <option value="Men's XL">Men's XL</option>
-                            <option value="Men's 2XL">Men's 2XL</option>
+                            <SizeOptions />
                         </select>
                     </div>
                     <div className="detail-selector-container">

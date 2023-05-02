@@ -25,6 +25,14 @@ function getDescription(idx) {
     return description;
 }
 
+function getAllColors(idx) {
+    let colors = [];
+    for (let color in shirts[idx].colors) {
+        colors.push(color);
+    }
+    return colors;
+}
+
 function getFirstAvailableColorAndNum(idx) {
     let firstColor = undefined;
     let numColors = 0;
@@ -75,4 +83,8 @@ function priceToNumber(price) {
     return parseFloat(price.replace(priceSign, ""));
 }
 
-export { noPriceString, priceSign, numberList, priceToNumber, getShirtName, getPrice, getDescription, getFirstAvailableColorAndNum, getFirstShirtImages, setSelectedImage };
+export {
+    noPriceString, priceSign, numberList,
+    priceToNumber, getShirtName, getPrice, getDescription, getAllColors,
+    getFirstAvailableColorAndNum, getFirstShirtImages, setSelectedImage
+};
