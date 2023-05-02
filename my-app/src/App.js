@@ -22,17 +22,15 @@ function App() {
     setUid(cartItemUid + 1);
   };
   const removeCartItem = (id) => {
-    console.log('remove qty:' + parseInt(myCart[id].quantity));
     setItemNum(parseInt(itemNum) - parseInt(myCart[id].quantity));
     let tmpCart = [...myCart];
     tmpCart.splice(id, 1);
-    console.log(tmpCart);
-    console.log(myCart);
+    // console.log(tmpCart);
+    // console.log(myCart);
     setMyCart(tmpCart);
   };
   const changeCartItemQty = (id, qty) => {
     let originQty = myCart[id].quantity;
-    console.log(`change qty from: ${originQty} to ${qty}`);
     setItemNum(parseInt(itemNum) - parseInt(originQty) + parseInt(qty));
     let tmpCart = myCart;
     tmpCart[id].quantity = qty;

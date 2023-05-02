@@ -62,7 +62,7 @@ export default function Cart({ num, myCart, removeCartItem, changeQty }) {
                         </div>
                     </div>
                     <div className="cart-checkout-btn-container continue-div">
-                        <Link to="/products" className=" cart-checkout-btn">Continue Shopping</Link>
+                        <Link to="/products" className="cart-checkout-btn">Continue Shopping</Link>
                     </div>
                 </div>
             </div >
@@ -72,8 +72,8 @@ export default function Cart({ num, myCart, removeCartItem, changeQty }) {
 
 function CartShirtItem({ shirt, idx, removeCartItem, changeQty }) {
     let [qty, setQty] = useState(shirt.quantity);
-    console.log(`list id:${idx}, now content id is ${shirt.id}, color is ${shirt.color}, quantity is ${shirt.quantity}, size is ${shirt.size}`);
-    console.log(`list id:${idx}, now qty is ${qty}`);
+    //console.log(`list id:${idx}, now content id is ${shirt.id}, color is ${shirt.color}, quantity is ${shirt.quantity}, size is ${shirt.size}`);
+    //console.log(`list id:${idx}, now qty is ${qty}`);
     return (
         <div className="cart-item">
             <h3 >{getShirtName(shirt.id)}</h3>
@@ -88,7 +88,7 @@ function CartShirtItem({ shirt, idx, removeCartItem, changeQty }) {
                         <label htmlFor='quantity' >Quantity:</label>
                         <select value={qty} id="quantity" className='color-btn'
                             onChange={(e) => {
-                                console.log('change to' + e.target.value);
+                                //console.log('change to' + e.target.value);
                                 changeQty(idx, e.target.value);
                                 setQty(e.target.value);
                             }}>
@@ -109,7 +109,7 @@ function CartShirtItem({ shirt, idx, removeCartItem, changeQty }) {
                         <p className="cart-red-text">{` ${getPrice(shirt.id)}`}</p>
                     </div>
                     <button className="cart-remove-btn"
-                        onClick={() => { console.log(idx); removeCartItem(idx); }}>
+                        onClick={() => { removeCartItem(idx); }}>
                         Remove
                     </button>
                 </div >

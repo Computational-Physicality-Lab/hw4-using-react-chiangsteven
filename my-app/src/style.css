@@ -286,7 +286,8 @@ footer>div {
 
 .side-btn:hover,
 .add-cart-btn:hover,
-.cart-remove-btn:hover {
+.cart-remove-btn:hover,
+.cart-checkout-btn:hover {
     color: white;
 }
 
@@ -314,7 +315,7 @@ footer>div {
     margin-left: 0.3rem;
     margin-right: 0.3rem;
     padding: 1px 6px 1px 6px;
-    font-size: larger;
+    font-size: medium;
 }
 
 .light-color:hover {

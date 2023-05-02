@@ -69,7 +69,7 @@ export default function Details({ addCart }) {
                         <label htmlFor='size'>Size:</label>
                         <select id="size" value={size} className='color-btn'
                             onChange={(e) => { setSize(e.target.value); }}>
-                            <option value="">Size:</option>
+                            <option value="">Size</option>
                             <option value="Women's XS">Women's XS</option>
                             <option value="Women's S">Women's S</option>
                             <option value="Women's M">Women's M</option>
