@@ -2,6 +2,8 @@ import shirts from './shirts';
 import defaultFrontShirt from "../assets/shirt_images/default-m-front.png";
 import defaultBackShirt from "../assets/shirt_images/default-m-back.png";
 
+const noPriceString = "No price info";
+
 function getShirtName(idx) {
     let name = shirts[idx].name;
     if (name === undefined)
@@ -12,7 +14,7 @@ function getShirtName(idx) {
 function getPrice(idx) {
     let price = shirts[idx].price;
     if (price === undefined)
-        price = "No price info";
+        price = noPriceString;
     return price;
 }
 
@@ -48,6 +50,29 @@ function getFirstShirtImages(idx, firstColor) {
     return { "front_image": front_image, "back_image": back_image };
 }
 
+function setSelectedImage(idx, color_detail, side_detail) {
+    let image;
+    if (shirts[idx].colors === undefined)
+        return (<img id="shirt-pic" src={defaultFrontShirt} alt="shirt" />);;
+    if (shirts[idx].colors[color_detail][side_detail] === undefined && side_detail === "front")
+        image = defaultFrontShirt;
+    else if (shirts[idx].colors[color_detail][side_detail] === undefined && side_detail === "back")
+        image = defaultBackShirt;
+    else
+        image = shirts[idx].colors[color_detail][side_detail];
+    return (<img className="shirt-pic" src={image} alt="shirt" />);
 
+}
 
-export { getShirtName, getPrice, getDescription, getFirstAvailableColorAndNum, getFirstShirtImages };
+const numberList = [];
+for (let i = 1; i <= 20; i++) {
+    numberList.push(i);
+}
+
+const priceSign = "$";
+
+function priceToNumber(price) {
+    return parseFloat(price.replace(priceSign, ""));
+}
+
+export { noPriceString, priceSign, numberList, priceToNumber, getShirtName, getPrice, getDescription, getFirstAvailableColorAndNum, getFirstShirtImages, setSelectedImage };
